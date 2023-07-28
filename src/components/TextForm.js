@@ -2,8 +2,13 @@ import React, { useState } from "react";
 
 export default function TextForm(props) {
   const handleUpClick = () => {
-    // console.log("Upper Click");
     let newText = text.toUpperCase();
+    setText(newText);
+  };
+
+  //   For lower case
+  const handleLoClick = () => {
+    let newText = text.toLowerCase();
     setText(newText);
   };
 
@@ -26,13 +31,16 @@ export default function TextForm(props) {
             rows="15"
           ></textarea>
         </div>
-        <div className="btn btn-primary" onClick={handleUpClick}>
+        {/* Buttons */}
+        <button className="btn btn-primary" onClick={handleUpClick}>
           Convert to Upper Case
-        </div>
+        </button>
         {/* Lower Case */}
-        <div className="btn btn-primary mx-2">Convert to Lower Case</div>
+        <button className="btn btn-primary mx-2" onClick={handleLoClick}>
+          Convert to Lower Case
+        </button>
       </div>
-
+      {/* Text summary */}
       <div className="container my-4">
         <h1>Your Text Summary</h1>
         <p>
