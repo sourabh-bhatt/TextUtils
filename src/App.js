@@ -4,7 +4,6 @@ import TextForm from "./components/TextForm";
 import About from "./components/About";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-let name = "Harry";
 function App() {
   return (
     <>
