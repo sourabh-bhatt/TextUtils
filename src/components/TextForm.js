@@ -37,6 +37,19 @@ export default function TextForm(props) {
     window.speechSynthesis.speak(msg);
   };
 
+  // Copy text
+  const copyText = () => {
+    let text = document.querySelector("#myBox");
+    text.select();
+    navigator.clipboard.writeText(text.value);
+  };
+
+  //   Removing Any extra space
+  const removeExtras = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
+  };
+
   //   Calling the change event listner for working of use state {text}
   const handleOnChange = (event) => {
     setText(event.target.value);
@@ -91,6 +104,26 @@ export default function TextForm(props) {
           <div className="col-12 col-md-4">
             <button className="btn btn-primary btn-block mb-3" onClick={speak}>
               Speak
+            </button>
+          </div>
+
+          {/* Copy all text */}
+          <div className="col-12 col-md-4">
+            <button
+              className="btn btn-primary btn-block mb-3"
+              onClick={copyText}
+            >
+              Copy All Text
+            </button>
+          </div>
+
+          {/* Remove extra spaces - Structure the paragraph */}
+          <div className="col-12 col-md-4">
+            <button
+              className="btn btn-primary btn-block mb-3"
+              onClick={removeExtras}
+            >
+              Remove extra space
             </button>
           </div>
 
