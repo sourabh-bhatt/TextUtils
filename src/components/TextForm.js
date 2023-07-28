@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
+  // For upper case
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
@@ -18,10 +19,30 @@ export default function TextForm(props) {
     setText(newText);
   };
 
+  //Convert all first letter to uppercase
+  const convertFirstLetterToUpperCase = (str) => {
+    return str.replace(/\b\w/g, (char) => char.toUpperCase());
+  };
+
+  const convertAllUpper = () => {
+    const newText = convertFirstLetterToUpperCase(text);
+    setText(newText);
+  };
+
+  //   Making text to speak
+
+  const speak = () => {
+    let msg = new SpeechSynthesisUtterance();
+    msg.text = text;
+    window.speechSynthesis.speak(msg);
+  };
+
+  //   Calling the change event listner for working of use state {text}
   const handleOnChange = (event) => {
-    // console.log("On Change");
     setText(event.target.value);
   };
+
+  //   creating useState hook
   const [text, setText] = useState(""); //array destructuring
 
   return (
@@ -37,17 +58,52 @@ export default function TextForm(props) {
             rows="15"
           ></textarea>
         </div>
-        {/* Buttons */}
-        <button className="btn btn-primary" onClick={handleUpClick}>
-          Convert to Upper Case
-        </button>
-        {/* Lower Case */}
-        <button className="btn btn-primary mx-3" onClick={handleLoClick}>
-          Convert to Lower Case
-        </button>
-        <button className="btn btn-primary" onClick={handToClear}>
-          Clear Text
-        </button>
+
+        <div className="row">
+          <div className="col-12 col-md-4">
+            <button
+              className="btn btn-primary btn-block mb-3"
+              onClick={handleUpClick}
+            >
+              Convert to Upper Case
+            </button>
+          </div>
+          <div className="col-12 col-md-4">
+            <button
+              className="btn btn-primary btn-block mb-3"
+              onClick={handleLoClick}
+            >
+              Convert to Lower Case
+            </button>
+          </div>
+          {/*  */}
+          {/* Convert all upper */}
+          <div className="col-12 col-md-4">
+            <button
+              className="btn btn-primary btn-block mb-3"
+              onClick={convertAllUpper}
+            >
+              Convert First to Uppercase
+            </button>
+          </div>
+
+          {/* Let your text speak */}
+          <div className="col-12 col-md-4">
+            <button className="btn btn-primary btn-block mb-3" onClick={speak}>
+              Speak
+            </button>
+          </div>
+
+          {/* Clear All */}
+          <div className="col-12 col-md-4">
+            <button
+              className="btn btn-primary btn-block mb-3"
+              onClick={handToClear}
+            >
+              Clear Inside's All Texts
+            </button>
+          </div>
+        </div>
       </div>
       {/* Text summary */}
       <div className="container my-4">
