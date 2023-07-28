@@ -12,11 +12,17 @@ export default function TextForm(props) {
     setText(newText);
   };
 
+  //   For clearing the text
+  const handToClear = () => {
+    let newText = "";
+    setText(newText);
+  };
+
   const handleOnChange = (event) => {
     // console.log("On Change");
     setText(event.target.value);
   };
-  const [text, setText] = useState("Enter text here"); //array destructuring
+  const [text, setText] = useState(""); //array destructuring
 
   return (
     <>
@@ -36,8 +42,11 @@ export default function TextForm(props) {
           Convert to Upper Case
         </button>
         {/* Lower Case */}
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>
+        <button className="btn btn-primary mx-3" onClick={handleLoClick}>
           Convert to Lower Case
+        </button>
+        <button className="btn btn-primary" onClick={handToClear}>
+          Clear Text
         </button>
       </div>
       {/* Text summary */}
